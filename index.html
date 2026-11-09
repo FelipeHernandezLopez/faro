@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+  Faro — portada para el ícono de la pantalla de inicio.
+
+  La app de verdad es una web app de Google Apps Script, dentro del
+  archivo "Faro · Finanzas Felipe". Apps Script no le puede dar a
+  iOS un ícono de pantalla de inicio, así que esta página existe sólo
+  para cargar el ícono y el nombre, y muestra la app adentro a pantalla
+  completa. Aquí NO vive ningún dato ni ninguna lógica.
+
+  La app pide un código al entrar: esta página es pública.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0C2340">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Faro">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>Faro</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0C2340; overflow: hidden; }
+  body { box-sizing: border-box; }
+  iframe { display: block; width: 100%; height: 100%; border: 0; }
+  #wait { position: fixed; inset: 0; display: grid; place-items: center;
+          background: #0C2340; transition: opacity .35s; }
+  #wait img { width: 96px; height: 96px; border-radius: 22px;
+              animation: pulse 1.4s ease-in-out infinite; }
+  #wait.gone { opacity: 0; pointer-events: none; }
+  @keyframes pulse { 50% { opacity: .5; transform: scale(.94); } }
+</style>
+</head>
+<body>
+<div id="wait"><img src="apple-touch-icon.png" alt="Faro"></div>
+<script>
+  var APP = 'https://script.google.com/macros/s/AKfycbzqgofByg-MNP9ehv1fLuLkDsrZ97jv6X-8NIkZAAg1udfyoTp6sEJMdXWk1Yh3w2wWpg/exec';
+  var f = document.createElement('iframe');
+  f.src = APP;
+  f.title = 'Faro';
+  f.allow = 'clipboard-write';
+  f.onload = function () { document.getElementById('wait').className = 'gone'; };
+  document.body.appendChild(f);
+</script>
+</body>
+</html>
